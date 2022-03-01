@@ -1,0 +1,16 @@
+{
+  "name": "auth-pern",
+  "version": "1.0.0",
+  "description": "- React\r - Postgres\r - Material-UI\r - React-Router-Dom\r - Node\r - Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-client":"cd client && npm run start",
+    "start-server":"cd server && npx nodemon index.js",
+    "dev":"start npm run start-server && start npm run start-client"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
