@@ -15,6 +15,7 @@ router.get("/", authorize, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 router.delete("/user", authorize, async (req, res) => {
   try {
     const user = await pool.query(
@@ -23,8 +24,9 @@ router.delete("/user", authorize, async (req, res) => {
     );
     res.status(200).json(user.rows[0].id);
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
+
 export default router;
