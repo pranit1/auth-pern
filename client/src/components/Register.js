@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../api/apiConfig";
 import { Link } from "react-router-dom";
 import {
   Snackbar,
@@ -30,7 +30,7 @@ const Register = ({ setAuth }) => {
     const { email, name, password } = inputs;
     console.log(email, name, password);
     axios
-      .post("http://localhost:5000/auth/register", {
+      .post("/auth/register", {
         name,
         email,
         password,

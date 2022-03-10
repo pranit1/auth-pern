@@ -8,7 +8,7 @@ import {
   TextField,
   Alert,
 } from "@mui/material";
-import axios from "axios";
+import axios from "../api/apiConfig";
 import { Link } from "react-router-dom";
 const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -31,7 +31,7 @@ const Login = ({ setAuth }) => {
     console.log(email, password);
     e.preventDefault();
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post("/auth/login", {
         email,
         password,
       })

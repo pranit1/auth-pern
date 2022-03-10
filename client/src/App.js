@@ -9,14 +9,14 @@ import {
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import axios from "axios";
+import axios from "./api/apiConfig";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     if (localStorage.token) {
       axios
-        .get("http://localhost:5000/auth/verify", {
+        .get("/auth/verify", {
           headers: { token: localStorage.token },
         })
         .then(({ data }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Box } from "@mui/material";
 import Header from "./Header";
-import axios from "axios";
+import axios from "../api/apiConfig";
 import Welcome from "./Welcome";
 import Profile from "./Profile";
 const Dashboard = ({ setAuth }) => {
@@ -11,7 +11,7 @@ const Dashboard = ({ setAuth }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/dashboard", {
+      .get("/dashboard", {
         headers: { token: localStorage.token },
       })
       .then(({ data }) => {

@@ -1,6 +1,6 @@
 import { Box, Typography, Container, Button } from "@mui/material";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../api/apiConfig";
 import {
   Dialog,
   DialogActions,
@@ -18,7 +18,7 @@ const Profile = ({ name, email, setAuth }) => {
   };
   const handleDelete = () => {
     axios
-      .delete("http://localhost:5000/dashboard/user", {
+      .delete("/dashboard/user", {
         headers: { token: localStorage.token },
       })
       .then(({ data }) => {
