@@ -10,7 +10,7 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import axios from "./api/apiConfig";
-
+import AuthContext from "./context/AuthContext";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -31,54 +31,56 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route
-            exact
-            path="/login"
-            element={
-              !isAuthenticated ? (
-                <Login setAuth={setAuth} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/"
-            element={
-              !isAuthenticated ? (
-                <Login setAuth={setAuth} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/dashboard"
-            element={
-              isAuthenticated ? (
-                <Dashboard setAuth={setAuth} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/register"
-            element={
-              !isAuthenticated ? (
-                <Register setAuth={setAuth} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
-          />
-        </Routes>
-      </Router>
+      <AuthContext.Provider value={setAuth}>
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/login"
+              element={
+                !isAuthenticated ? (
+                  <Login setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/"
+              element={
+                !isAuthenticated ? (
+                  <Login setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/dashboard"
+              element={
+                isAuthenticated ? (
+                  <Dashboard setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/register"
+              element={
+                !isAuthenticated ? (
+                  <Register setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
+              }
+            />
+          </Routes>
+        </Router>
+      </AuthContext.Provider>
     </div>
   );
 }

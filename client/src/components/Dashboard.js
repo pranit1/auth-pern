@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Container, Box } from "@mui/material";
 import Header from "./Header";
 import axios from "../api/apiConfig";
 import Welcome from "./Welcome";
 import Profile from "./Profile";
-const Dashboard = ({ setAuth }) => {
+import AuthContext from "../context/AuthContext";
+const Dashboard = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [flag, setFlag] = useState(false);
-
+  const setAuth = useContext(AuthContext);
   useEffect(() => {
     axios
       .get("/dashboard", {
@@ -57,7 +58,7 @@ const Dashboard = ({ setAuth }) => {
             </Button>
           </Header>
           {flag ? (
-            <Profile name={name} email={email} setAuth={setAuth} />
+            <Profile name={name} email={email} />
           ) : (
             <Welcome name={name} />
           )}

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "../api/apiConfig";
 import { Link } from "react-router-dom";
 import Notification from "./Notification";
 import { Container, Box, Typography, Button, TextField } from "@mui/material";
-const Register = ({ setAuth }) => {
+import AuthContext from "../context/AuthContext";
+const Register = () => {
   const [error, setError] = useState("");
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
     name: "",
   });
-
+  const setAuth = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, name, password } = inputs;

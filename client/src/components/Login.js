@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Box, Typography, Button, TextField } from "@mui/material";
 import axios from "../api/apiConfig";
 import { Link } from "react-router-dom";
 import Notification from "./Notification";
-
-const Login = ({ setAuth }) => {
+import AuthContext from "../context/AuthContext";
+const Login = () => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -14,7 +14,7 @@ const Login = ({ setAuth }) => {
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
-
+  const setAuth = useContext(AuthContext);
   const handleSubmit = (e) => {
     const { email, password } = inputs;
     e.preventDefault();
