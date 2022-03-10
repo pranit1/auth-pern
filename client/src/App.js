@@ -13,6 +13,7 @@ import axios from "./api/apiConfig";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
     if (localStorage.token) {
       axios
@@ -27,6 +28,7 @@ function App() {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
+
   return (
     <div className="App">
       <Router>

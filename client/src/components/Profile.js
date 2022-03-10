@@ -1,33 +1,11 @@
 import { Box, Typography, Container, Button } from "@mui/material";
 import { useState } from "react";
-import axios from "../api/apiConfig";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import DeleteProfile from "./DeleteProfile";
 const Profile = ({ name, email, setAuth }) => {
   const [open, setOpen] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   const handleOpen = () => {
     setOpen(true);
-  };
-  const handleDelete = () => {
-    axios
-      .delete("/dashboard/user", {
-        headers: { token: localStorage.token },
-      })
-      .then(({ data }) => {
-        localStorage.removeItem("token");
-        setAuth(false);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
   };
 
   return (
@@ -40,26 +18,7 @@ const Profile = ({ name, email, setAuth }) => {
         <Button onClick={handleOpen} variant="outlined" color="error">
           Delete Account
         </Button>
-        <Dialog onClose={handleClose} open={open}>
-          <DialogTitle>Delete Confirmation</DialogTitle>
-          <DialogContent dividers>
-            <Typography variant="h6">
-              Are you sure you want to delete the account?
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              disableElevation={true}
-              variant="contained"
-              color="error"
-              autoFocus
-              onClick={handleDelete}
-            >
-              {" "}
-              Delete
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <DeleteProfile open={open} setOpen={setOpen} setAuth={setAuth} />
       </Container>
     </>
   );

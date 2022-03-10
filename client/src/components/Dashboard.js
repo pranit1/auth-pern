@@ -31,6 +31,7 @@ const Dashboard = ({ setAuth }) => {
   const handleFlag = () => {
     setFlag((currentValue) => !currentValue);
   };
+
   return (
     <>
       <Container component="main" maxWidth="md">
